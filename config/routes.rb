@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  devise_for :admins, skip: [:registrations, :passwords] , controllers: {
+  devise_for :admin, skip: [:registrations, :passwords] , controllers: {
     sessions: "admin/sessions"
   }
 
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    get homes => 'admin/homes#top'
-    resources :products,    only: %i(index show new create edit update)
+    get '/' => 'homes#top'
+    resources :items,       only: %i(index show new create edit update)
     resources :genres,      only: %i(index create edit update)
     resources :customers,   only: %i(index show edit update)
     resources :orders,      only: %i(show update)
@@ -20,14 +20,15 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root :to                            => 'homes#top'
-    get homes                           => 'homes#about'
-    get    'customers/withdraw_confirm' => 'customers/withdraw_confirm'
-    patch  'customers/withdraw'         => 'customers/withdraw'
+    get    '/about'                     => 'homes#about'
+    get    'customers/withdraw_confirm' => 'customers#withdraw_confirm'
+    patch  'customers/withdraw'         => 'customers#withdraw'
     delete 'cart_items/destroy_all'     => 'cart_items#destroy_all'
     post   'orders/confirm'             => 'orders#confirm'
     get    'orders/complete'            => 'orders#complete'
     resources :items,       only: %i(index show)
-    resources :customers,   only: %i(show edit updat)
+    resource  :customers,   only: %i(show)
+    resources :customers,   only: %i(edit update)
     resources :cart_items,  only: %i(index update destroy create)
     resources :orders,      only: %i(new create index show)
     resources :addresses,   only: %i(create index edit update destroy)
