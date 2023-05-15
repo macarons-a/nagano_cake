@@ -9,7 +9,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? && current_user == admin %>
+          <% if admin_signed_in?  %>
             <li>
               <%= link_to "商品一覧", class: 'nav-link text-light' %>
             </li>
@@ -25,7 +25,7 @@
             <li>
               <%= link_to "ログアウト", class: 'nav-link text-light' %>
             </li>
-          <% elsif user_signed_in? %>
+          <% elsif customer_signed_in? %>
             <li>
               <%= link_to "マイページ", class: 'nav-link text-light' %>
             </li>
