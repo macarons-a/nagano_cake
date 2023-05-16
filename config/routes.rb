@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :items,       only: %i(index show new create edit update)
     resources :genres,      only: %i(index create edit update)
     resources :customers,   only: %i(index show edit update)
-    resources :orders,      only: %i(show update)
+    resources :orders,      only: %i(index show update)
     resources :order_items, only: %i(update)
   end
 

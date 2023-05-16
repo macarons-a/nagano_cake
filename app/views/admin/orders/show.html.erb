@@ -1,0 +1,11 @@
+<%= form_with model: @order, url: admin_order_path(@order) do |f| %>
+  <%= f.label :status, 'ステータス' %>
+  <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
+
+  <%= f.fields_for :order_items do |oi| %>
+    <%= oi.label :making_status, '製作ステータス' %>
+    <%= oi.select :making_status, options_for_select(OrderItem.making_statuses.keys, oi.object.making_status) %>
+  <% end %>
+
+  <%= f.submit "更新" %>
+<% end %>
