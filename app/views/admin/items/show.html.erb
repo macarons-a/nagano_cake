@@ -18,11 +18,11 @@
             <td><%= @item.genre.name %></td>
           </tr>
             <td>税込み価格<br>(税抜価格)</td>
-            <td><%= @item.with_tax_price\(@item.price) %></td>
+            <td><%= @item.with_tax_price %><%= "(#{@item.price})" %>円</td>
           </tr>
           <tr>
             <td>販売ステータス</td>
-            <% if item.is_active == true %>
+            <% if @item.is_active == true %>
                 <td class="text-success">販売中</td>
               <% else %>
                 <td class="text-secondary">販売停止中</td>
