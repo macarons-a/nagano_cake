@@ -3,7 +3,7 @@
     <h2><%= "#{@customer.first_name} #{@customer.last_name}さんの会員情報編集" %></h2>
   </div>
   <div class="row">
-    <%= form_with model: @customer do |f| %>
+    <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
       <div class="form-group">
         <table class="table">
           <tbody>
@@ -45,6 +45,10 @@
                 <%= f.radio_button :is_deleted, true, id: "is_deleted_true" %>
                 <%= f.label :is_deleted_true, "退会" %>
               </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
             </tr>
           </tbody>
         </table>

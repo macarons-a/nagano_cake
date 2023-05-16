@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   validates :address,presence:true
   validates :postal_code,presence:true
   validates :phone_number,presence:true
-  validates :is_deleted,presence:true
+
 
 
   devise :database_authenticatable, :registerable,
