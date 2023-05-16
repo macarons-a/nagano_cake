@@ -8,5 +8,5 @@
 
 Admin.find_or_create_by(id: 1) do |admin|
  admin.email = "example@example.com"
- admin.encrypted_password = "example"
+ admin.password = "example"
 end
