@@ -26,10 +26,10 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all'     => 'cart_items#destroy_all'
     post   'orders/confirm'             => 'orders#confirm'
     get    'orders/complete'            => 'orders#complete'
-    get    'customers/information/edit' => 'customers#edit'
-    patch  'customers'                  => 'customers#update'
+    
     resources :items,       only: %i(index show)
     resource  :customers,   only: %i(show)
+    resources :customers,   onry: %i(edit update)
     resources :cart_items,  only: %i(index update destroy create)
     resources :orders,      only: %i(new create index show)
     resources :addresses,   only: %i(create index edit update destroy)
