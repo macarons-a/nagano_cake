@@ -3,15 +3,15 @@
     <h2>注文情報入力</h2>
   </div>
   <div class="row">
-    <%= form_with model: @order,url: orders_confirm_path,metod: :post do |f| %>
+    <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
       <h5>支払方法</h5>
       <div>
          <%= f.radio_button :payment_method, :credit_card, checked: true %>
-         <%= f.label :credit_card,"クレジットカード" %>
+         <%= f.label :credit_card, "クレジットカード" %>
       </div>
       <div>
          <%= f.radio_button :payment_method, :transfer, checked: true %>
-         <%= f.label :credit_card,"銀行振込" %>
+         <%= f.label :transfer, "銀行振込" %>
       </div>
       <h5>お届け先</h5>
       <div>
@@ -24,7 +24,7 @@
       <div>
         <%= f.radio_button :delivery_type, :existing_address %>
         <%= label_tag :existing_address, "登録済住所から選択" %><br>
-        <%= f.collection_select :address_id, @addresses, :id, lambda { |address| "〒#{address.postal_code} #{address.name} #{address.address}" } %>
+        <%= f.collection_select :address_id, @addresses, :id, lambda { |address| "〒#{address.postal_code} #{address.address} #{address.name}" } %>
       </div>
       <div>
         <%= f.radio_button :delivery_type, :new_address %>
