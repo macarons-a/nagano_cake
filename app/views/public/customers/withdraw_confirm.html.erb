@@ -1,8 +1,13 @@
-<!--<div class="text-center">-->
-<!--  <h4>本当に退会しますか？</h4>-->
-<!--  <p class="mb-4">退会すると、会員登録情報や</br>-->
-<!--    これまでの購入履歴が閲覧できなくなります。<br>-->
-<!--    退会する場合は、「退会する」をクリックしてください。</p>-->
-  <%#=link_to "退会しない",_path, class: "btn btn-primary d-inline-block"%>
-<!--  <%#=link_to "退会する",_path,method: :patch, class: "btn btn-danger d-inline-block"%>-->
-<!--</div>-->
+<div class="text-center">
+  <h4>本当に退会しますか？</h4>
+  <p class="mb-4">
+    退会すると、会員登録情報や</br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+  <%= form_with model: @customer, url: customers_withdraw_path, method: :patch, local: true do |f| %>
+    <%= f.submit "退会する", name: "commit", class: "btn btn-danger" %>
+    <%= f.submit "退会しない", name: "commit", class: "btn btn-primary" %>
+    <%= f.hidden_field :is_deleted, value: true %>
+  <% end %>
+</div>

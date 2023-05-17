@@ -19,17 +19,18 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root :to                            => 'homes#top'
-    get    '/about'                     => 'homes#about'
-    get    'customers/withdraw_confirm' => 'customers#withdraw_confirm'
-    patch  'customers/withdraw'         => 'customers#withdraw'
-    delete 'cart_items/destroy_all'     => 'cart_items#destroy_all'
-    post   'orders/confirm'             => 'orders#confirm'
-    get    'orders/complete'            => 'orders#complete'
-    get    'customers/information/edit' => 'customers#edit'
-    patch  'customers'                  => 'customers#update'
+    root :to                             =>  'homes#top'
+    get    '/about'                      =>  'homes#about'
+    get    'customers/withdraw_confirm'  =>  'customers#withdraw_confirm'
+    patch  'customers/withdraw'          =>  'customers#withdraw'
+    delete 'cart_items/destroy_all'      =>  'cart_items#destroy_all'
+    post   'orders/confirm'              =>  'orders#confirm'
+    get    'orders/complete'             =>  'orders#complete'
+    get    '/customers'                  =>  'customers#show'
+    get    'customers/information/edit', to: 'customers#edit',   as: 'edit_customer'
+    patch  'customers/information',      to: 'customers#update', as: 'update_customer'
+    
     resources :items,       only: %i(index show)
-    resource  :customers,   only: %i(show)
     resources :cart_items,  only: %i(index update destroy create)
     resources :orders,      only: %i(new create index show)
     resources :addresses,   only: %i(create index edit update destroy)
