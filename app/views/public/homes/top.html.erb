@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="top-section mt-5">
+        <%= image_tag("rails.png", size: "600x300") %>
+        <p class="text-center">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="new-items">
+        <h2>新着商品</h2>
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-1">
+              <div class="item">
+                <div><%= image_tag item.get_image, size: "150x100" %></div>
+                <div><%= item.name %></div>
+                <div><%= item.with_tax_price %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
