@@ -11,7 +11,7 @@ class Public::AddressesController < ApplicationController
     @address = current_customer.addresses.build(address_params)
     if @address.save
       flash[:notice] = "配送先を追加しました"
-      redirect_to addresses_path
+      redirect_to request.referer
     else
       @customer = current_customer
       @addresses = @customer.addresses
@@ -36,6 +36,7 @@ class Public::AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
+    flash[:notice] = "配送先を削除しました"
     redirect_to request.referer
   end
 
