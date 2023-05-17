@@ -9,16 +9,15 @@ class Public::CartItemsController < ApplicationController
     item = Item.find(params[:cart_item][:item_id])
     cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: item.id)
     unless cart_item.nil?
-      byebug
       cart_item.amount += (params[:cart_item][:amount]).to_i
-      cart_item.update(cart_item_params)
+      cart_item.save
       flash[:notice] = "カート内商品の数量を追加しました"
-      redirect_to request.referer
+      redirect_to cart_items_path
     else
       cart_item = current_customer.cart_items.new(cart_item_params)
       cart_item.save
       flash[:notice] = "カートに商品を追加しました"
-      redirect_to request.referer
+      redirect_to cart_items_path
     end
   end
 
@@ -32,11 +31,13 @@ class Public::CartItemsController < ApplicationController
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
+    flash[:secondary] = "カートから商品を削除しました"
     redirect_to request.referer
   end
 
   def destroy_all
     current_customer.cart_items.destroy_all
+    flash[:secondary] = "カート内の商品を全て削除しました"
     redirect_to request.referer
   end
 
