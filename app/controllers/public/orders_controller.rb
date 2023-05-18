@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-    elsif params[:order][:delivery_type] = "2"
+    elsif params[:order][:delivery_type] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
       redirect_to orders_complete_path
       cart_items.destroy_all
     else
-      @order = Order.new(order_params)  #これどうなんやろ？エラー出そう！
+      @order = Order.new(order_params)  #エラー出そう！
       render :confirm
     end
   end
@@ -55,7 +55,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @cart_items = current_customer.cart_items
+    @cart_items = @order.order_items
   end
 
   def complete
