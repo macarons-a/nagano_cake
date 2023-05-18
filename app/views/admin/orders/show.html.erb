@@ -3,24 +3,27 @@
     <h5 class="bg-light">注文履歴詳細</h5>
   </div>
   
-  
   <div>
-    購入者<%= link_to @order.customer.name, customers_path %>
+    <p>購入者</p>
+    <%= link_to @order.customer.name, admin_customer_path %>
   </div>
   <div>
-    注文日<%= @order.created_at %>
+    <p>注文日</p>
+    <%= @order.created_at %>
   </div>
   <div>
-    配送先<%= @order.address %><br><%= @order.name %>
+    <p>配送先</p>
+    <%= @order.address %><br><%= @order.name %>
   </div>
   <div>
-    支払方法<%= @order.payment_method %>
+    <p>支払方法</p>
+    <%= @order.payment_method %>
   </div>
   <div>
-    注文ステータス
-    <%= form_with model: @order, method: :patch do |f| %>
+    <p>注文ステータス</p>
+    <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
       <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
-      <%= f.submit "更新", class: "btn btn-success" %>
+      <%= f.submit "更新", class: "btn btn-sm btn-success" %>
     <% end %>
   </div>
   
@@ -35,30 +38,39 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= @order.name %></td>
-        <td><%= @order.order_item.price.to_s(:delimited) %></td>
-        <td><%= @order.order_item.amount %></td>
-        <td><%= @order.price.to_s(:delimited) %></td>
-        <td>
-          <%= form_with model: @order, url: admin_order_item_path(@order), method: :patch do |f| %>
-            <%= f.fields_for :order_items do |oi| %>
-              <%= oi.select :making_status, options_for_select(OrderItem.making_statuses.keys, oi.object.making_status) %>
-            <%= f.submit "更新", class: "btn btn-success" %>
-          <% end %>
-        </td>
-      </tr>
+      <% @order.order_items.each do |order_item| %>
+        <tr>
+          <td><%= @order.name %></td>
+          <td><%= order_item.price.to_s(:delimited) %></td>
+          <td><%= order_item.amount %></td>
+          <td><%= (order_item.price * order_item.amount).to_s(:delimited) %></td>
+          <td>
+            <%= form_with model: order_item, url: admin_order_item_path(@order, order_item), method: :patch do |f| %>
+              <%= f.select :making_status, options_for_select(OrderItem.making_statuses.keys, order_item.making_status) %>
+              <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 
   <div>
-    商品合計<%= @total_payment.to_s(:delimited) %>
+    <b>商品合計</b>
+    <% total = 0 %>
+    <% @order.order_items.each do |order_item| %>
+      <% subtotal = order_item.price * order_item.amount %>
+      <% total += subtotal %>
+    <% end %>
+    <%= total.to_s(:delimited) %>円
   </div>
   <div>
-    送料<%= @shipping_cost %>
+    <b>送料</b><%= @shipping_cost %>円
   </div>
   <div>
-    請求金額合計<%= (@total_payment + @shipping_cost).to_s(:delimited) %>
+    <% total_payment = 0 %>
+    <% total_payment += total += @shipping_cost %>
+    <b>請求金額合計<%= total_payment.to_s(:delimited) %>円</b>
   </div>
   
 

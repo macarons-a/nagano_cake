@@ -21,5 +21,6 @@ class Order < ApplicationRecord
     preparing_ship: 3, #発送準備中
     shipped: 4 #発送済み
   }
+  
 
 end
