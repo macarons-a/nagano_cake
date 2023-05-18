@@ -18,3 +18,4 @@ ja: # 日本語の設定を行う
         wating_for_making: "製作待ち"
         is_making: "製作中"
         completion: "製作完了"
+  
