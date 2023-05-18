@@ -12,9 +12,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |oder| %>
+      <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at %></td>
+          <td><%= link_to order.created_at, admin_order_pa %></td>
           <td><%= order.customer_id.name %></td>
           <td><%= order.order_item.amount %></td>
           <td><%= order.status %></td>
@@ -23,3 +23,4 @@
     </tbody>
   </table>
 </div>
+<%= paginate @orders %>
