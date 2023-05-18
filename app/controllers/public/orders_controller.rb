@@ -9,14 +9,14 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     if params[:order][:delivery_type] == "0"
-      @order.postal_code = current_ccustomer.postal_code
-      @order.address = current_ccustomer.address
-      @order.name = current_ccustomer.last_name + current_customer.last_name
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.last_name
     elsif params[:order][:delivery_type] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
-      @order.name = @order.name
+      @order.name = @address.name
     elsif params[:order][:delivery_type] = "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -37,11 +37,11 @@ class Public::OrdersController < ApplicationController
         order_item = OrderItem.new
         order_item.item_id = cart.item_id
         order_item.order_id = @order.id
-        order_item.order_amount = cart.amount
-        ordered_item.tax_included_price = (cart.item.price*1.1).floor
+        order_item.amount = cart.amount
+        order_item.price = (cart.item.price*1.1).floor
         order_item.save
       end
-      redirect_to　orders_complete_path
+      redirect_to orders_complete_path
       cart_items.destroy_all
     else
       @order = Order.new(order_params)  #これどうなんやろ？エラー出そう！
@@ -54,7 +54,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
   end
 

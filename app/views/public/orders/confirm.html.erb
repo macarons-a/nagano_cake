@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <% total = 0 %>
-          <% @cart_items.each |cart_item| do %>
+          <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.item.get_image, size: "50x50" %>
                 <%= cart_item.item.name %>
@@ -26,7 +26,7 @@
                 <%= subtotal %>
             </td>
           </tr>
-          <% total += (@cart_item.item.price*@cart_item.amount)*1.1 %>
+          <% total += ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
           <% end %>
         </tbody>
       </table>
@@ -36,6 +36,7 @@
         <tbody>
           <tr>
             <td>送料</td>
+            <% @order.shipping_cost = 800 %>
             <td><%= @order.shipping_cost %></td>
           </tr>
           <tr>
@@ -44,21 +45,25 @@
           </tr>
           <tr>
             <td>請求額</td>
-            <td><%= @order.total_payment.to_i %></td>
+            <td><%= @order.total_payment = @order.shipping_cost + total.to_i %></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="row">
-    <h5>支払方法</h5>
-    <p><%= @order.payment_method %></p>
-    <h5>お届け先</h5>
-    <p>
-      <%= @order.postal_code %>
-      <%= @order.address %>
-      <%= @order.name %>
-    </p>
+    <div>
+      <h5>支払方法</h5>
+      <p><%= @order.payment_method %></p>
+    <div>
+    <div>
+      <h5>お届け先</h5>
+      <p>
+        <%= @order.postal_code %>
+        <%= @order.address %>
+        <%= @order.name %>
+      </p>
+    </div>
   </div>
 
   <div class="row">
