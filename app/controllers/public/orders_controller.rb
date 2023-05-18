@@ -8,17 +8,17 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if params[:order][:my_address] == "0"
-      @order.shipping_post_code = current_ccustomer.post_code
-      @order.shipping_address = current_ccustomer.address
-      @order.shipping_name = current_ccustomer.last_name + current_customer.last_name
-    elsif params[:order][:existing_address] == "1"
+    if params[:order][:delivery_type] == "0"
+      @order.postal_code = current_ccustomer.postal_code
+      @order.address = current_ccustomer.address
+      @order.name = current_ccustomer.last_name + current_customer.last_name
+    elsif params[:order][:delivery_type] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @order.name
-    elsif params[:order][:new_address] = "2"
-      @order.post_code = params[:order][:post_code]
+    elsif params[:order][:delivery_type] = "2"
+      @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     else
@@ -44,16 +44,13 @@ class Public::OrdersController < ApplicationController
       redirect_to　orders_complete_path
       cart_items.destroy_all
     else
-      @order = Order.new(order_params)
+      @order = Order.new(order_params)  #これどうなんやろ？エラー出そう！
       render :confirm
     end
   end
 
-
-
-
-
   def index
+    @order = Order.all
   end
 
   def show
