@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
+    @order = Order.new
     if params[:order][:delivery_type] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -21,11 +21,14 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-    else
-     render :new
+      if @order.postal_code.blank? || @order.address.blank? || @order.name.blank?
+        @customer = current_customer
+        @addresses = @customer.addresses
+        flash[:error] = "フォームに値を入れてください"
+        render :new
+      end
     end
     @cart_items = current_customer.cart_items
-    @order.customer_id = current_customer.id
   end
 
   def create
@@ -43,7 +46,6 @@ class Public::OrdersController < ApplicationController
       redirect_to orders_complete_path
       @cart_items.destroy_all
     else
-      @order = Order.new(order_params)
       render :confirm
     end
   end
