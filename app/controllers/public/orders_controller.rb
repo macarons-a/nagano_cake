@@ -5,6 +5,7 @@ class Public::OrdersController < ApplicationController
     @customer = current_customer
     @addresses = @customer.addresses
   end
+
   def create
     cart_items = current_customer.cart_items
     @order = current_customer.orders.new(order_params)
