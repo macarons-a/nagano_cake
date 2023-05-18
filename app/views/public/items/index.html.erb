@@ -15,7 +15,7 @@
               <% end %>
             </p>
             <div><%= item.name %></div>
-            <div><%= "￥#{item.with_tax_price}" %></div>
+            <div><%= "￥#{item.with_tax_price.to_s(:delimited)}" %></div>
           </div>
         <% end %>
         <%= paginate @items %>
