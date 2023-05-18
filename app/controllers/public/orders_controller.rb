@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:delivery_type] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.name = current_customer.last_name + current_customer.last_name
+      @order.name = current_customer.first_name + current_customer.last_name
     elsif params[:order][:delivery_type] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
       redirect_to orders_complete_path
       cart_items.destroy_all
     else
-      @order = Order.new(order_params)  #エラー出そう！
+      @order = Order.new(order_params)
       render :confirm
     end
   end

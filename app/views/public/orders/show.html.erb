@@ -21,11 +21,11 @@
           </tr>
           <tr>
             <td>支払方法</td>
-            <td><%= @order.payment_method %></td>
+            <td><%= @order.payment_method_i18n %></td>
           </tr>
           <tr>
             <td>ステータス</td>
-            <td><%= @order.status %></td>
+            <td><%= @order.status_i18n %></td>
           </tr>
         </tbody>
       </table>
@@ -36,15 +36,15 @@
         <tbody>
           <tr>
             <td>商品合計</td>
-            <td><%#= @order.items.price %></td>
+            <td><%= subtotal = ((@order.order_items.sum { |item| item.item.price * item.amount }) * 1.1).floor.to_s(:delimited) %></td>
           </tr>
           <tr>
             <td>配送料</td>
-            <td><%= @order.shipping_cost %></td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
           </tr>
           <tr>
             <td>ご請求額</td>
-            <td><%= @order.total_payment+ @order.shipping_cost %></td>
+            <td><%= @order.total_payment.to_s(:delimited)%></td>
           </tr>
         </tbody>
       </table>
@@ -67,7 +67,7 @@
             <td><%= cart_item.item.name %></td>
             <td><%= (cart_item.item.price*1.1).to_i %></td>
             <td><%= cart_item.amount %></td>
-            <td><% subtotal = ((cart_item.item.price * cart_item.amount) * 1.1).to_i %>
+            <td><% subtotal = ((cart_item.item.price * cart_item.amount) * 1.1).floor.to_s(:delimited) %>
                 <%= subtotal %>
             </td>
           </tr>
