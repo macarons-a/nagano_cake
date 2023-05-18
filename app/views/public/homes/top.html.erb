@@ -14,20 +14,34 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <div class="new-items">
-        <h2>新着商品</h2>
-        <div class="row">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="new-items col-1 mt-n3 mb-3">
+          <h2>新着商品</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-3"></div>
           <% @items.each do |item| %>
-            <div class="col-1">
+            <div class="col-1 mx-auto">
               <div class="item">
                 <div><%= image_tag item.get_image, size: "150x100" %></div>
-                <div><%= item.name %></div>
+                <div><%= link_to item.name, admin_item_path(item) %></div>
                 <div><%= item.with_tax_price %></div>
               </div>
             </div>
           <% end %>
+        <div class="col-3"></div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-8"></div>
+    <%= link_to "全ての商品を見る >", items_path %>
   </div>
 </div>
