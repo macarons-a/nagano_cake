@@ -1,15 +1,16 @@
 class Admin::OrdersController < ApplicationController
-  
+  before_action :authenticate_admin!
+
   def index
     @orders = Order.page(params[:page])
   end
-  
+
   def show
     @order = Order.find(params[:id])
     @total_payment = @order.pirce.subtotal
     @shipping_cost = 800
   end
-  
+
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
@@ -18,9 +19,9 @@ class Admin::OrdersController < ApplicationController
     else
       render :show
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:status)
   end
