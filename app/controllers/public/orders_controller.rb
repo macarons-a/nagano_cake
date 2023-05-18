@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
 
-
   def new
     @order = Order.new
     @customer = current_customer
@@ -64,5 +63,7 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:postal_code,:address, :name, :shipping_cost, :total_payment, :payment_method,:customer_id, :status)
   end
+
+  before_action :authenticate_customer!
 
 end
