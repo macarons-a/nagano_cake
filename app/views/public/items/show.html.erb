@@ -10,7 +10,7 @@
           <h4><%= @item.name %></h4>
           <p><%= @item.introduction %></p>
           <div>
-            <%= "￥#{@item.with_tax_price}" %>
+            <%= "￥#{@item.with_tax_price.to_s(:delimited)}" %>
             <span>(税込)</span>
           </div>
           <div class="form">
