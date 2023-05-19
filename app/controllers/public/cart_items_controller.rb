@@ -10,15 +10,24 @@ class Public::CartItemsController < ApplicationController
     item = Item.find(params[:cart_item][:item_id])
     cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: item.id)
     unless cart_item.nil?
-      cart_item.amount += (params[:cart_item][:amount]).to_i
-      cart_item.save
-      flash[:notice] = "カート内商品の数量を追加しました"
-      redirect_to cart_items_path
+      if (params[:cart_item][:amout]).blank?
+        flash[:error] = "個数を選択してください"
+        redirect_to item_path(item)
+      else
+        cart_item.amount += (params[:cart_item][:amount]).to_i
+        cart_item.save
+        flash[:notice] = "カート内商品の数量を追加しました"
+        redirect_to cart_items_path
+      end
     else
       cart_item = current_customer.cart_items.new(cart_item_params)
-      cart_item.save
-      flash[:notice] = "カートに商品を追加しました"
-      redirect_to cart_items_path
+      if cart_item.save
+        flash[:notice] = "カートに商品を追加しました"
+        redirect_to cart_items_path
+      else
+        flash[:error] = "個数を選択してください"
+        redirect_to item_path(item)
+      end
     end
   end
 
