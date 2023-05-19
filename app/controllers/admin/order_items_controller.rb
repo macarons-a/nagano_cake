@@ -2,8 +2,8 @@ class Admin::OrderItemsController < ApplicationController
   before_action :authenticate_admin!
   
   def update
-    order = Order.find(params[:id])
-    order_item = order.order_items.find(params[:id])
+    order_item = OrderItem.find(params[:id])
+    order = order_item.order
     if order_item.update(order_item_params)
       flash[:success] = "ステータスを変更しました。"
       redirect_to admin_order_path(order)
