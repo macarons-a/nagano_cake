@@ -15,12 +15,12 @@
       <div class="row">
         <span class="col-2"></span>
         <p class="col-2"><%= f.label :"商品名" %></p>
-        <span class="col-5"><%= f.text_field :name, placeholder: "商品名", class: "form-control" %></span>
+        <span class="col-5"><%= f.text_field :name, placeholder: "商品名", class: "form-control placeholder-light" %></span>
       </div>
       <div class="row">
         <span class="col-2"></span>
         <p class="col-2"><%= f.label :"商品説明" %></p>
-        <span class="col-5"><%= f.text_area :introduction, rows: '5', placeholder: "ここに説明文を記述します", class: "form-control" %></span>
+        <span class="col-5"><%= f.text_area :introduction, rows: '5', placeholder: "ここに説明文を記述します", class: "form-control placeholder-light" %></span>
       </div>
       <div class="row mt-3">
         <span class="col-2"></span>
@@ -31,7 +31,7 @@
         <span class="col-2"></span>
         <p class="col-2 mt-3"><%= f.label :"税抜価格" %></p>
         <span class="d-flex align-items-center justify-content-end">
-          <span><%= f.text_field :price, placeholder: 1000, class: "form-control col-12" %></span>
+          <span><%= f.text_field :price, placeholder: 1000, class: "form-control placeholder-light col-12" %></span>
           <p class="col-1 mt-3">円</p>
         </span>
       </div>
