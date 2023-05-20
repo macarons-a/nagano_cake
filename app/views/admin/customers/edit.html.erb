@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
-    <h2><%= "#{@customer.first_name} #{@customer.last_name}さんの会員情報編集" %></h2>
+  <div class="row mt-5 mb-3">
+    <h3 class="bg-light"><%= "#{@customer.first_name}#{@customer.last_name}さんの会員情報編集" %></h3>
   </div>
   <div class="row">
     <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
       <div class="form-group">
-        <table class="table">
+        <table class="table table-borderless">
           <tbody>
             <tr>
               <td>会員ID</td>
@@ -26,8 +26,8 @@
               <td><%= f.text_field :postal_code, class: "form-control" %></td>
             </tr>
             <tr>
-              <td>住所</td>
-              <td><%= f.text_field :address, class: "form-control" %></td>
+              <td >住所</td>
+              <td colspan="3"><%= f.text_field :address, class: "form-control" %></td>
             </tr>
             <tr>
               <td>電話番号</td>
