@@ -1,36 +1,43 @@
 <div class="container">
-  <div class="row">
-    <div class="col-10">
-      <h4>商品詳細</h4>
-      <%= image_tag @item.get_image, size: "100x100" %>
-      <table>
-        <tbody>
-          <tr>
-            <td>商品名</td>
-            <td><%= @item.name %></td>
-          </tr>
-          <tr>
-            <td>商品説明</td>
-            <td><%= @item.introduction %></td>
-          </tr>
-          <tr>
-            <td>ジャンル</td>
-            <td><%= @item.genre.name %></td>
-          </tr>
-            <td>税込み価格<br>(税抜価格)</td>
-            <td><%= @item.with_tax_price %><%= "(#{@item.price})" %>円</td>
-          </tr>
-          <tr>
-            <td>販売ステータス</td>
-            <% if @item.is_active == true %>
-                <td class="text-success">販売中</td>
-              <% else %>
-                <td class="text-secondary">販売停止中</td>
-              <% end %>
-          </tr>
-        </tbody>
-      </table>
-
+  <div class="row mt-4 pl-5">
+    <div class="bg-light col-2">
+      <h4 class="text-center">商品詳細</h4>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <%= image_tag @item.get_image, size: "200x130" %>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <p class="col-3">商品名</p>
+        <span class="col-9"><%= @item.name %></span>
+      </div>
+      <div class="row">
+        <p class="col-3">商品説明</p>
+        <span class="col-9"><%= @item.introduction %></span>
+      </div>
+      <div class="row">
+        <p class="col-3">ジャンル</p>
+        <span class="col-9"><%= @item.genre.name %></span>
+      </div>
+      <div class="row">
+        <p class="col-3">税込み価格<br>(税抜価格)</p>
+        <span class="col-9 pt-3"><%= @item.with_tax_price %><%= "(#{@item.price})" %>円</span>
+      </div>
+      <div class="row">
+        <p class="col-3">販売ステータス</p>
+        <span class="col-9">
+          <% if @item.is_active == true %>
+            <span class="text-success">販売中</span>
+          <% else %>
+            <span class="text-secondary">販売停止中</span>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <div class="col-12  d-flex justify-content-center">
       <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success" %>
     </div>
   </div>
