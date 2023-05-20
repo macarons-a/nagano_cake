@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
-    <h2>注文情報確認</h2>
+  <div class="row mt-5">
+    <h3>注文情報確認</h3>
   </div>
   <div class="row">
     <div class="col-7">
       <table class="table table-bordered">
-        <thead>
+        <thead class="thead-light">
           <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
@@ -33,16 +33,16 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td>送料</td>
+            <td class="bg-light">送料</td>
             <% @order.shipping_cost = 800 %>
             <td><%= @order.shipping_cost %></td>
           </tr>
           <tr>
-            <td>商品合計</td>
-            <td><%= total.to_i %></td>
+            <td class="bg-light">商品合計</td>
+            <td><%= total.to_s(:delimited) %></td>
           </tr>
           <tr>
-            <td>請求額</td>
+            <td class="bg-light">請求額</td>
             <td>
               <% @order.total_payment = @order.shipping_cost + total %>
               <%= @order.total_payment.to_s(:delimited) %>
@@ -54,14 +54,14 @@
   </div>
   <div class="row">
     <div>
-      <h5>支払方法</h5>
-      <p><%= @order.payment_method %></p>
+      <h5><strong>支払方法</strong></h5>
+      <p><%= @order.payment_method_i18n %></p>
     <div>
     <div>
-      <h5>お届け先</h5>
+      <h5><strong>お届け先</strong></h5>
       <p>
-        <%= @order.postal_code %>
-        <%= @order.address %>
+        〒<%= @order.postal_code %>
+        <%= @order.address %><br>
         <%= @order.name %>
       </p>
     </div>
