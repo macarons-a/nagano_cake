@@ -30,7 +30,11 @@
             <div class="col-1 mx-auto">
               <div class="item">
                 <div><%= image_tag item.get_image, size: "150x100" %></div>
-                <div><%= link_to item.name, admin_item_path(item) %></div>
+                <% if admin_signed_in? %>
+                  <div><%= link_to item.name, admin_item_path(item) %></div>
+                <% else %>
+                  <div><%= link_to item.name, item_path(item) %></div>
+                <% end %>
                 <div><%= item.with_tax_price %></div>
               </div>
             </div>
