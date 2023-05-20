@@ -28,7 +28,7 @@
               <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %></td>
             </tr>
             <tr>
-              <td><%= f.label :postal_code, "郵便番号" %></td>
+              <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
               <td></td>
               <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal-code", class: "form-control", placeholder: "0000000" %></td>
             </tr>
@@ -38,7 +38,7 @@
               <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "street-address", class: "form-control", placeholder: "東京都千代田区丸の内0-0" %></td>
             </tr>
             <tr>
-              <td><%= f.label :phone_number, "電話番号" %></td>
+              <td><%= f.label :phone_number, "電話番号(ハイフンなし)" %></td>
               <td></td>
               <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "tel", class: "form-control", placeholder: "00000000000" %></td>
             </tr>
@@ -51,7 +51,7 @@
               <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
             </tr>
             <tr>
-              <td><%= f.label :password_confirmation, "パスワード確認" %></td>
+              <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
               <td></td>
               <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"  %></td>
             </tr>
