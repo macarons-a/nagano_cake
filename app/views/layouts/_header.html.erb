@@ -8,7 +8,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
           <% if admin_signed_in? %>
             <li>
               <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light' %>
@@ -26,6 +26,9 @@
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
             </li>
           <% elsif customer_signed_in? %>
+            <li class="d-flex align-items-center mr-5">
+              <div class="mr-5">ようこそ<%= current_customer.first_name %>さん！！</div>
+            </li>
             <li>
               <%= link_to "マイページ", customers_path, class: 'nav-link text-light' %>
             </li>
