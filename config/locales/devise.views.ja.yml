@@ -2,7 +2,7 @@ ja:
  activerecord:
   errors:
    models:
-    user:
+    customer:
      attributes:
       email:
        taken: "は既に使用されています。"
@@ -17,16 +17,37 @@ ja:
        too_long: "は%{count}文字以下に設定して下さい。"
        invalid: "は有効でありません。"
        confirmation: "が内容とあっていません。"
+      first_name:
+       blank: "が入力されていません。"
+      last_name:
+       blank: "が入力されていません。"
+      first_name_kana:
+       blank: "が入力されていません。"
+      last_name_kana:
+       blank: "が入力されていません。"
+      address:
+       blank: "が入力されていません。"
+      postal_code:
+       blank: "が入力されていません。"
+      phone_number:
+       blank: "が入力されていません。"
   attributes:
-   user:
+   customer:
     current_password: "現在のパスワード"
     name: "名前"
     email: "メールアドレス"
     password: "パスワード"
     password_confirmation: "確認用パスワード"
+    first_name: "名前（姓）"
+    last_name: "名前（名）"
+    first_name_kana: "フリガナ（セイ）"
+    last_name_kana: "フリガナ（メイ）"
+    address: "住所"
+    postal_code: "郵便番号"
+    phone_number: "電話番号"
     remember_me: "次回から自動的にログイン"
   models:
-   user: "ユーザ"
+   customer: "アカウント"
  devise:
   confirmations:
    new:
