@@ -10,7 +10,7 @@ class Public::CartItemsController < ApplicationController
     item = Item.find(params[:cart_item][:item_id])
     cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: item.id)
     unless cart_item.nil?
-      if (params[:cart_item][:amout]).blank?
+      if (params[:cart_item][:amount]).blank?
         flash[:error] = "個数を選択してください"
         redirect_to item_path(item)
       else
