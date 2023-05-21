@@ -33,6 +33,7 @@ class Public::SessionsController < Devise::SessionsController
 
     if @customer && @customer.valid_password?(params[:customer][:password])
       if @customer.is_deleted?
+        flash[:danger] = "退会済みのアカウントです。ログインできません。"
         redirect_to new_customer_registration_path
       else
         sign_in(@customer)
