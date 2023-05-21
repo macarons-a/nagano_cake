@@ -25,9 +25,9 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   protected
-  
+
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
 
@@ -37,9 +37,9 @@ class Public::SessionsController < Devise::SessionsController
       else
         sign_in(@customer)
         flash[:notice] = "ログインしました。"
-        redirect_to customers_path
+        redirect_to root_path
       end
     end
   end
-  
+
 end

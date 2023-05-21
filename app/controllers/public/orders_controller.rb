@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new
+    @order = Order.new(order_params)
     if params[:order][:delivery_type] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
