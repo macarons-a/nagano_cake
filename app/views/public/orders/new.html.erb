@@ -2,7 +2,7 @@
   <div class="row mt-5 mb-3">
     <h2>注文情報入力</h2>
   </div>
-  <div class="row">
+  <div class="row mx-auto">
     <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
       <h5><strong>支払方法</strong></h5>
       <div>
@@ -30,7 +30,7 @@
         <%= f.radio_button :delivery_type, 2 %>
         <%= label_tag :address, "新しいお届け先" %>
         <div class="form-group">
-          <table class="table table-borderless">
+          <table class="table table-borderless table-responsive">
             <tbody>
               <tr>
                 <td><%= f.label :postal_code,"郵便番号(ハイフンなし)" %></td>

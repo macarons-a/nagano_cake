@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
-    <h3 class="bg-light d-inline-block mt-4">配送先編集</h3>
+  <div class="row mx-auto">
+    <h3 class="bg-light mt-4">配送先編集</h3>
   </div>
-  <div class="row">
+  <div class="row mx-auto">
     <%= form_with model: @address do |f| %>
-      <div class="form-group">
+      <div class="form-group table-responsive">
         <table class="table table-borderless">
           <tbody>
             <tr>
@@ -18,7 +18,6 @@
             <tr>
               <td><%= f.label :name,"宛先" %></td>
               <td><%= f.text_field :name, class: "form-control" %></td>
-              <td><td>
               <td><%= f.submit "変更内容を保存",class: "btn btn-success" %></td>
             </tr>
           </tbody>
