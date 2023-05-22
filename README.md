@@ -1,24 +1,45 @@
-# README
+# ながのCAKE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+長野県にあるケーキ店「ながのCAKE」のECサイトを開発をしました。
+(チーム開発課題のため、ケーキ店は実在していません。)
 
-Things you may want to cover:
 
-* Ruby version
+## 使用している言語フレームワークのバージョン
+* Ruby 3.1.2
+* Rails 6.1.7.3
+* bootstrap 4.5
 
-* System dependencies
 
-* Configuration
+## 主な機能
+#### 【管理者】
+* 管理者ログイン、ログアウト機能
+* 商品ジャンルの新規追加、編集機能
+* 商品の新規追加、編集、閲覧機能
+* 会員情報の閲覧、編集、退会処理機能
+* 販売ステータスの選択、注文ステータスの更新、製作ステータスの更新機能
 
-* Database creation
+#### 【会員側】
+* 新規会員登録、ログイン、ログアウト、退会機能
+* 商品の注文機能
+* ジャンル検索機能
+* 注文履歴の閲覧機能
+* 配送先の登録、編集、削除機能
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+## 使用方法
+```
+$ yarn install
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+```
+
+## 管理者ページのログイン方法について
+下記の情報を入力することで管理者としてログインできます。
+* メールアドレス：example@example.com
+* パスワード：example

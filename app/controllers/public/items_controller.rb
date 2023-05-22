@@ -1,6 +1,12 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page]).per(8)
+    if params[:name].nil?
+      @items = Item.all
+      @paginate_items = @items.page(params[:page]).per(8)
+    else
+      @items = Genre.find_by(name: params[:name]).items
+      @paginate_items = @items.page(params[:page]).per(8)
+    end
   end
 
   def show
