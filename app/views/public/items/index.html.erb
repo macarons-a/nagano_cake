@@ -6,11 +6,10 @@
     <div class="col-xl-10 col-md-9">
       <% if params[:name].nil? %>
         <h4 class="d-inline-block">商品一覧</h4>
-        <span><%= "(全#{@items.count}件)" %></span>
       <% else %>
         <h4 class="d-inline-block"><%= params[:name] %>一覧</h4>
-        <span><%= "(全#{@items.count}件)" %></span>
       <% end %>
+      <span><%= "(全#{@items.count}件)" %></span>
       <%= render "index", items: @paginate_items %>
     </div>
   </div>
