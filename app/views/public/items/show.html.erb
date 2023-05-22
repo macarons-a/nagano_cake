@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row pt-5">
-    <div class="col-3"></div>
-    <div class="col-9">
+    <div class="col-xl-2 col-md-3">
+      <%= render "admin/genres/search_genre", genres: Genre.all %>
+    </div>
+    <div class="col-xl-10 col-md-9">
       <div class="row">
         <div class="col-sm-4">
           <%= image_tag @item.get_image, size: "150x120" %>
