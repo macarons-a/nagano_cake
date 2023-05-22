@@ -6,37 +6,37 @@
     <h3><strong>登録情報</strong></h3>
     <p><%= link_to "編集する", edit_customer_path, class: "btn btn-success ml-5" %></p>
   </div>
-  <div class="row">
+  <div class="row table-responsive mx-auto">
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td class="col-sm-2 bg-light">氏名</td>
-          <td><%= "#{@customer.first_name} #{@customer.last_name}" %></td>
+          <td class="col-2 bg-light">氏名</td>
+          <td class=""><%= "#{@customer.first_name} #{@customer.last_name}" %></td>
         </tr>
         <tr>
-          <td class="col-sm-2 bg-light">フリガナ</td>
+          <td class="bg-light">フリガナ</td>
           <td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
         </tr>
         <tr>
-          <td class="col-sm-2 bg-light">郵便番号</td>
+          <td class="bg-light">郵便番号</td>
           <td><%= @customer.postal_code %></td>
         </tr>
         <tr>
-          <td class="col-sm-2 bg-light">住所</td>
+          <td class="bg-light">住所</td>
           <td><%= @customer.address %></td>
         </tr>
         <tr>
-          <td class="col-sm-2 bg-light">電話番号</td>
+          <td class="bg-light">電話番号</td>
           <td><%= @customer.phone_number %></td>
         </tr>
         <tr>
-          <td class="col-sm-2 bg-light">メールアドレス</td>
+          <td class="bg-light">メールアドレス</td>
           <td><%= @customer.email %></td>
         </tr>
     </table>
   </div>
-  <div class="row">
-    <table>
+  <div class="row mx-auto">
+    <table class="table-responsive">
       <tbldy>
         <tr>
           <td><h5><strong>配送先</strong></h5></td>

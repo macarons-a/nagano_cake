@@ -3,12 +3,13 @@
     margin: 30px 0;
     position: relative;
     img {
+      width: 60vw;
       display: block;
       margin: 0 auto;
     }
     p {
       position: absolute;
-      font-size: 30px;
+      font-size: 1.5em;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -23,3 +24,5 @@
     width: 100%;
     box-sizing: border-box;
   }
+  
+  
