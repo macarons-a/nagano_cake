@@ -2,10 +2,10 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <% if admin_signed_in? %>
-        <span>LOGO(仮)</span>
+        <h1><span class="maintitle">ながの CAKE</span></h1>
       <% else %>
         <%= link_to root_path, class: "navbar-brand" do %>
-          <span>LOGO(仮)</span>
+          <h1><span class="maintitle">ながの CAKE</span></h1>
         <% end %>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

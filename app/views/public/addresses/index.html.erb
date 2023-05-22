@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <%= form_with model: @address do |f| %>
-      <div class="form-group">
+      <div class="form-group table-responsive">
         <table class="table table-borderless">
           <tbody>
             <tr>
@@ -26,7 +26,7 @@
       </div>
     <% end %>
   </div>
-  <div class="row">
+  <div class="row table-responsive">
     <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
@@ -42,8 +42,8 @@
             <td><%= address.postal_code %></td>
             <td ><%= address.address %></td>
             <td><%= address.name %></td>
-            <td style="text-align: center;">
-              <%= link_to "編集する", edit_address_path(address.id),class: "btn btn-success mr-5" %>
+            <td class="text-center">
+              <%= link_to "編集する", edit_address_path(address.id),class: "btn btn-success" %>
               <%= link_to "削除する", address_path(address.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
             </td>
           </tr>

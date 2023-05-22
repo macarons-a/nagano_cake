@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row mt-5">
-    <h3>注文情報確認</h3>
+    <h3 class="col-md-4 text-center">注文情報確認</h3>
   </div>
   <div class="row">
-    <div class="col-7">
+    <div class="mx-auto">
       <%= @form_data %>
-      <table class="table table-bordered">
+      <table class="table table-bordered table-responsive">
         <thead class="thead-light">
           <tr>
             <th>商品名</th>
@@ -30,8 +30,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-3">
-      <table class="table table-bordered">
+    <div class="mx-auto">
+      <table class="table table-bordered table-responsive">
         <tbody>
           <tr>
             <td class="bg-light">送料</td>
@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="row">
-    <div>
+    <div class="col-md-4 text-center">
       <h5><strong>支払方法</strong></h5>
       <p><%= @order.payment_method_i18n %></p>
     <div>
@@ -69,7 +69,8 @@
   </div>
 
   <div class="row">
-    <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+    <div class="mx-auto">
+      <%= form_with model: @order, url: orders_path, method: :post do |f| %>
       <%= f.hidden_field :customer_id %>
       <%= f.hidden_field :shipping_cost %>
       <%= f.hidden_field :total_payment %>
@@ -80,5 +81,6 @@
       <%= f.hidden_field :status %>
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
     <% end %>
+    </div>
   </div>
 </div>
