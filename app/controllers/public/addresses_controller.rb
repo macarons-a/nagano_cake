@@ -15,7 +15,8 @@ class Public::AddressesController < ApplicationController
     else
       @customer = current_customer
       @addresses = @customer.addresses
-      render :new
+      flash[:danger] = "配送先を全て入力してください"
+      redirect_to addresses_path
     end
   end
 
