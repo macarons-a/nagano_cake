@@ -14,4 +14,9 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
+  def search
+    @items = Item.search_for(params[:word])
+    @paginate_items = @items.page(params[:page]).per(8)
+  end
+
 end

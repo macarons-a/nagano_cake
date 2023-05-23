@@ -66,4 +66,18 @@
       </div>
     </div>
   </nav>
+  <% unless admin_signed_in? %>
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="search_window ">
+          <%= form_with url: items_search_path, method: :get do |f| %>
+            <%= f.text_field :word, placeholder: "Search" %>
+            <%= button_tag type: "submit", class: "btn" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </header>
