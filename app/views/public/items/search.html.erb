@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-xl-2 col-md-3">
+      <%= render "admin/genres/search_genre", genres: Genre.all %>
+    </div>
+    <div class="col-xl-10 col-md-9">
+      <h4 class="d-inline-block">検索商品一覧</h4>
+      <span><%= "(全#{@items.count}件)" %></span>
+      <p>"<%= params[:word] %>" という文字を含んだ商品</p>
+      <%= render "index", items: @paginate_items %>
+    </div>
+  </div>
+</div>
