@@ -39,8 +39,16 @@
             <li>
               <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
             </li>
-            <li>
-              <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
+            <li class="position-relative">
+              <%= link_to cart_items_path, class: 'nav-link text-dark btn' do %>
+                カート
+                <% if current_customer.cart_items.present? %>
+                  <span class="position-absolute top-0 start-0 translate-middle badge border border-light rounded-circle bg-danger text-white">
+                    <%= current_customer.cart_items.count %>
+                  </span>
+                  <!--<span class="visually-hidden">カート内商品数</span>-->
+                <% end %>
+              <% end %>
             </li>
             <li>
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
