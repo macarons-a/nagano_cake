@@ -8,22 +8,22 @@
       <table class="table table-bordered table-responsive bg-light">
         <thead class="thead-light">
           <tr>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
+            <th class="align-middle">商品名</th>
+            <th class="align-middle">単価(税込)</th>
+            <th class="align-middle">数量</th>
+            <th class="align-middle">小計</th>
           </tr>
         </thead>
         <tbody>
           <% total = 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= image_tag cart_item.item.get_image, size: "50x50" %>
+            <td class="align-middle"><%= image_tag cart_item.item.get_image, size: "50x50" %>
                 <%= cart_item.item.name %>
             </td>
-            <td><%= (cart_item.item.price*1.1).floor.to_s(:delimited) %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= subtotal = ((cart_item.item.price*cart_item.amount)*1.1).floor.to_s(:delimited) %></td>
+            <td class="align-middle"><%= (cart_item.item.price*1.1).floor.to_s(:delimited) %></td>
+            <td class="align-middle"><%= cart_item.amount %></td>
+            <td class="align-middle"><%= subtotal = ((cart_item.item.price*cart_item.amount)*1.1).floor.to_s(:delimited) %></td>
           </tr>
           <% total += ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
           <% end %>
@@ -54,13 +54,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 text-center">
+    <div class="col-8 mx-auto">
       <h5><strong>支払方法</strong></h5>
-      <p><%= @order.payment_method_i18n %></p>
+      <p class="ml-5"><%= @order.payment_method_i18n %></p>
     <div>
     <div>
       <h5><strong>お届け先</strong></h5>
-      <p>
+      <p class="ml-5">
         〒<%= @order.postal_code %>
         <%= @order.address %><br>
         <%= @order.name %>

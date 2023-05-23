@@ -55,8 +55,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @cart_items = @order.order_items
+    if (params[:id] == "confirm")
+      redirect_to new_order_path
+    else
+      @order = Order.find(params[:id])
+      @cart_items = @order.order_items
+    end
   end
 
   def complete
