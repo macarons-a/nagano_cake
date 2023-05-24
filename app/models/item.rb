@@ -17,6 +17,10 @@ class Item < ApplicationRecord
   end
 
   def self.search_for(word)
-    Item.where("name LIKE ?", "%#{word}%")
+    unless word.blank?
+      Item.where("name LIKE ?", "%#{word}%")
+    else
+      Item.where(name: word)
+    end
   end
 end
