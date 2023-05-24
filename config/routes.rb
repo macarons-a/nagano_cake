@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :items,       only: %i(index show new create edit update)
     resources :genres,      only: %i(index create edit update)
-    resources :customers,   only: %i(index show edit update)
+    resources :customers,   only: %i(index show edit update) do
+      get 'orders' => "orders#index"
+    end
     resources :orders,      only: %i(show update)
     resources :order_items, only: %i(update)
   end

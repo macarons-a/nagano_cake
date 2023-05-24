@@ -18,7 +18,12 @@ class Admin::OrdersController < ApplicationController
       render :show
     end
   end
-  
+
+  def index
+    @customer = Customer.find(params[:customer_id])
+    @orders = @customer.orders.page(params[:page])
+  end
+
 
   private
 
@@ -26,5 +31,5 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:status)
   end
 
-  
+
 end
