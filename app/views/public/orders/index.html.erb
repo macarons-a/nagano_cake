@@ -4,19 +4,19 @@
     <table class="table table-bordered bg-light">
       <thead class="thead-light">
         <tr>
-          <th>注文日</th>
-          <th>配送先</th>
-          <th>注文商品</th>
-          <th>支払金額</th>
-          <th>ステータス</th>
-          <th>注文詳細</th>
+          <th class="align-middle">注文日</th>
+          <th class="align-middle">配送先</th>
+          <th class="align-middle">注文商品</th>
+          <th class="align-middle">支払金額</th>
+          <th class="align-middle">ステータス</th>
+          <th class="align-middle">注文詳細</th>
         </tr>
       </thead>
       <tbody>
         <% @orders.each do |order| %>
           <tr>
             <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
+            <td class="align-middle">
               〒<%= order.postal_code %><br>
               <%= order.address %><br>
               <%= order.name %>
