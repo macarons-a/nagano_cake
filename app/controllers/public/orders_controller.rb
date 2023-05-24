@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
@@ -21,10 +22,10 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-      if @order.postal_code.blank? || @order.address.blank? || @order.name.blank?
+      if @order.form_blank? || @order.postal_code !~ /\A\d{7}\z/ #フォームが空もしくは郵便番号電話が7桁以外だとはじく
         @customer = current_customer
         @addresses = @customer.addresses
-        flash[:error] = "フォームに値を入れてください"
+        flash[:error] = "フォームが空、もしくは郵便番号が7桁ではありません"
         render :new
       end
     end
@@ -55,17 +56,20 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @cart_items = @order.order_items
+    if (params[:id] == "confirm") #注文確認画面でのページ更新時にカートに遷移させる
+      redirect_to cart_items_path
+    else
+      @order = Order.find(params[:id])
+      @cart_items = @order.order_items
+    end
   end
 
   def complete
   end
-
+  
+  private
   def order_params
     params.require(:order).permit(:postal_code,:address, :name, :shipping_cost, :total_payment, :payment_method,:customer_id, :status)
   end
-
-  before_action :authenticate_customer!
 
 end
