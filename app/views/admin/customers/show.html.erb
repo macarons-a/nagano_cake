@@ -48,7 +48,7 @@
           <td class="col-12 col-sm-10">
             <div class="d-flex flex-column flex-sm-row">
               <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success mb-2 mb-sm-0" %>
-              <%= link_to "注文履歴一覧見る", admin_path, class: "btn btn-primary ml-sm-3" %>
+              <%= link_to "注文履歴一覧見る", admin_customer_orders_path(@customer.id), class: "btn btn-primary ml-sm-3" %>
             </div>
           </td>
         </tr>
