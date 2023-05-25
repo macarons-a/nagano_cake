@@ -3,7 +3,7 @@
     <div class="col-sm-3">
       <p>
         <%= link_to item_path(item) do %>
-          <%= image_tag item.get_image, size: "120x80" %>
+          <%= image_tag item.get_image(120, 80) %>
         <% end %>
       </p>
       <div><%= item.name %></div>

@@ -34,7 +34,7 @@
             <div class="col-auto mx-auto">
               <div class="item">
                 <%= link_to item_path(item) do %>
-                  <%= image_tag item.get_image, size: "150x100" %>
+                  <%= image_tag item.get_image(150, 100) %>
                 <% end %>
                 <div><%= item.name %></div>
                 <div><%= item.with_tax_price %></div>

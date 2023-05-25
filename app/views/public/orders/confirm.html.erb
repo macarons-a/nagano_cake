@@ -18,7 +18,7 @@
           <% total = 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <td class="align-middle"><%= image_tag cart_item.item.get_image, size: "50x50" %>
+            <td class="align-middle"><%= image_tag cart_item.item.get_image(50, 50) %>
                 <%= cart_item.item.name %>
             </td>
             <td class="align-middle"><%= (cart_item.item.price*1.1).floor.to_s(:delimited) %></td>
