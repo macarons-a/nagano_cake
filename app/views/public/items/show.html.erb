@@ -6,7 +6,7 @@
     <div class="col-xl-10 col-md-9">
       <div class="row">
         <div class="col-sm-4">
-          <%= image_tag @item.get_image, size: "150x120" %>
+          <%= image_tag @item.get_image(150, 120) %>
         </div>
         <div class="col-sm-8">
           <h4><%= @item.name %></h4>
