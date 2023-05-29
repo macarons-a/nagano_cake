@@ -1,0 +1,28 @@
+.container {
+  .top-section {
+    margin: 0 0 30px 0;
+    position: relative;
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    figcaption {
+      position: absolute;
+      font-size: 1.2em;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+  .address-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  

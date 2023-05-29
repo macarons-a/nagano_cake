@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row mt-5 mb-4">
+    <h2>注文履歴詳細</h2>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h5><strong>注文情報</strong></h5>
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="bg-light">注文日</td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">配送先</td>
+            <td>
+              〒<%= @order.postal_code %><br>
+              <%= @order.address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="bg-light">支払方法</td>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">ステータス</td>
+            <td><%= @order.status_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <h5><strong>請求情報</strong></h5>
+      <table class="table table-bordered bg-light">
+        <tbody>
+          <tr>
+            <td class="bg-light">商品合計</td>
+            <td><%= subtotal = ((@order.order_items.sum { |item| item.item.price * item.amount }) * 1.1).floor.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">配送料</td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="bg-light"><strong>ご請求額</strong></td>
+            <td><%= @order.total_payment.to_s(:delimited)%></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <h5><strong>注文内容</strong></h5>
+    <table class="table table-bordered bg-light">
+      <thead class="thead-light">
+        <tr>
+          <th>商品</th>
+          <th>単価(税込)</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.item.name %></td>
+            <td><%= (cart_item.item.price*1.1).to_i %></td>
+            <td><%= cart_item.amount %></td>
+            <td><% subtotal = ((cart_item.item.price * cart_item.amount) * 1.1).floor.to_s(:delimited) %>
+                <%= subtotal %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

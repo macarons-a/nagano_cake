@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-xl-2 col-md-3">
+      <%= render "admin/genres/search_genre", genres: Genre.all %>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-8 col-sm-12">
+      <div class="top-section">
+        <%= image_tag("top-image.jpg", class: "img-fluid") %>
+        <figcaption class="text-center">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </figcaption>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="new-items col-6 mt-n3 mb-3">
+          <h2>新着商品</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class=""></div>
+          <% @items.each do |item| %>
+            <div class="col-auto mx-auto">
+              <div class="item">
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.get_image(150, 100) %>
+                <% end %>
+                <div><%= item.name %></div>
+                <div><%= item.with_tax_price %></div>
+              </div>
+            </div>
+          <% end %>
+        <div class=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="ml-auto"></div>
+    <%= link_to "全ての商品を見る >", items_path %>
+    <div class="col-1"></div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <% if admin_signed_in? %>
+        <h1><span class="maintitle">Nagano Cake</span></h1>
+      <% else %>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <h1><span class="maintitle">Nagano Cake</span></h1>
+        <% end %>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+          <% if admin_signed_in? %>
+            <li>
+              <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "注文履歴一覧", admin_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn' %>
+            </li>
+          <% elsif customer_signed_in? %>
+            <li class="d-flex align-items-center mr-5">
+              <div class="mr-5">ようこそ<%= current_customer.first_name %>さん！！</div>
+            </li>
+            <li>
+              <%= link_to "マイページ", customers_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "商品一覧", items_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li class="position-relative">
+              <%= link_to cart_items_path, class: 'nav-link text-dark btn' do %>
+                カート
+                <% if current_customer.cart_items.present? %>
+                  <span class="position-absolute top-0 start-0 translate-middle badge border border-light rounded-circle bg-danger text-white">
+                    <%= current_customer.cart_items.count %>
+                  </span>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark btn' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "About", about_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "商品一覧", items_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "管理者ログイン", new_admin_session_path, class: 'nav-link text-dark btn' %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark btn' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <% unless admin_signed_in? %>
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="search_window ">
+          <%= form_with url: items_search_path, method: :get do |f| %>
+            <%= f.text_field :word, placeholder: "Search" %>
+            <%= button_tag type: "submit", class: "btn" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</header>

@@ -1,0 +1,23 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import 'admin/homes/top';
+@import 'addresses/address';
+@import 'admin/items/index';
+@import 'admin/items/new';
+@import 'layouts/header';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+body{
+  background-color: #fdf5e6;
+}
+

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+      <h3><%= "#{@customer.first_name}#{@customer.last_name}さんの会員詳細" %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td class="col-3 col-sm-2">会員ID</td>
+          <td class="col-9 col-sm-8"><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">氏名</td>
+          <td class="col-9 col-sm-8"><%= "#{@customer.first_name}　#{@customer.last_name}" %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">フリガナ</td>
+          <td class="col-9 col-sm-8"><%= "#{@customer.first_name_kana}　#{@customer.last_name_kana}" %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">郵便番号</td>
+          <td class="col-9 col-sm-8"><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">住所</td>
+          <td class="col-9 col-sm-8"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">電話番号</td>
+          <td class="col-9 col-sm-8"><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">メールアドレス</td>
+          <td class="col-9 col-sm-8"><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td class="col-3 col-sm-2">会員ステータス</td>
+          <% if @customer.is_deleted == false %>
+            <td class="col-9 col-sm-8 text-success font-weight-bold">有効</td>
+          <% else %>
+            <td class="col-9 col-sm-8 text-secondary font-weight-bold">退会</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td class="col-2"></td>
+          <td class="col-12 col-sm-10">
+            <div class="d-flex flex-column flex-sm-row">
+              <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success mb-2 mb-sm-0" %>
+              <%= link_to "注文履歴一覧見る", admin_customer_orders_path(@customer.id), class: "btn btn-primary ml-sm-3" %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

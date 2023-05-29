@@ -1,0 +1,14 @@
+<div class="row">
+  <% items.each do |item| %>
+    <div class="col-sm-3">
+      <p>
+        <%= link_to item_path(item) do %>
+          <%= image_tag item.get_image(120, 80) %>
+        <% end %>
+      </p>
+      <div><%= item.name %></div>
+      <div><%= "￥#{item.with_tax_price.to_s(:delimited)}" %></div>
+    </div>
+  <% end %>
+</div>
+<%= paginate items %>
